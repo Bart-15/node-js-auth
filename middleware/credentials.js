@@ -1,15 +1,12 @@
 import allowedOrigins from "../config/allowedOrigins.js";
 
-const credentials = {
-    origin: (origin, callback) => {
-        if(allowedOrigins.indexOf(origin) !== -1 || !origin){
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"))
-        }
-    },
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  
+const credentials = (req,res, next) => {
+    const origin = req.headers.origin;
+    if(allowedOrigins.includes(origin)){
+        res.header('Access-Control-Allow-Credentials', true);
+    }
+
+    next();
 }
 
 export default credentials;

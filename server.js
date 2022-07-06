@@ -1,19 +1,23 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import connectDb from './database/dbConnection.js'
 import cors from 'cors';
 import dotenv from 'dotenv';
-import corsOptions from './middleware/credentials.js';
+import corsOptions from './config/corsOptions.js';
+import credentials from './middleware/credentials.js';
 import errorHandler from './middleware/errorHandler.js';
 import cookieParser from 'cookie-parser';
-import './database/dbConnection.js'
 dotenv.config({path:'./.env'});
 
 
 import login from './routes/api/auth.js';
 import register from './routes/api/register.js';
+import logout from './routes/api/logout.js';        
 import refresh  from './routes/api/refresh.js';
 import student from './routes/api/student.js';
 
+// connect database
+connectDb();
 
 // custom logge
 const app = express();
@@ -21,7 +25,11 @@ const API = process.env.API;
 
 const PORT = process.env.PORT || 3000;
 
-// cors options config
+// handle options creds check - before cors
+// fetch cookie credentials requirement
+app.use(credentials)
+
+// Cross origin resource sharing
 app.use(cors(corsOptions));
 
 // use cookie parser
@@ -33,9 +41,10 @@ app.use(bodyParser.urlencoded({limit:"30mb", extended: true}));
 
 
 // use all routes
-app.use(`${API}`, refresh);
 app.use(`${API}`, login);
 app.use(`${API}`, register);
+app.use(`${API}`, logout);
+app.use(`${API}`, refresh);
 app.use(`${API}`, student);
 
 // error handler for catching errors;

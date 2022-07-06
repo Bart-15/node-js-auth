@@ -18,6 +18,7 @@ export const newUser = async (req, res) => {
         const newUser = await new User({
             name: req.body.name,
             lastName: req.body.lastName,
+            roles: {"User":5000},
             email: req.body.email,
             password: hashedPass
         }).save();

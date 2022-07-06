@@ -25,9 +25,15 @@ export const  login = async(req, res) => {
         if(!checkPassword) return res.status(400).json({message: 'Incorrect password'});
 
         if(checkPassword) {
+          const roles = Object.values(user.roles).filter(Boolean);
           // TODO: GENERATE JWT TOKEN and Refresh token
           const accessToken = jwt.sign(
-            {"name": user.name},
+            {
+              "UserInfo":{
+                name: user.name,
+                roles: roles
+              }
+            },
             access_token,
             {expiresIn:'30s'}
           ) 
