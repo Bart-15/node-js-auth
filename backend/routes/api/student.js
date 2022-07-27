@@ -8,17 +8,17 @@ const router = express.Router();
 // @route    /students
 // @desc     create new student
 // @access   Private
-router.post('/students', verifyJwt, verifyRoles(ROLES_LIST.Admin), newStudent);
+router.post('/students', verifyJwt, verifyRoles(ROLES_LIST.Editor, ROLES_LIST.Admin), newStudent);
 
 // @route    /students
 // @desc     get all students
 // @access   Private
-router.get('/students', verifyJwt, verifyRoles(ROLES_LIST.User, ROLES_LIST.Editor, ROLES_LIST.Admin), getStudents);
+router.get('/students', verifyJwt, verifyRoles(ROLES_LIST.Editor, ROLES_LIST.Admin), getStudents);
 
 // @route    /students
 // @desc     delete student
 // @access   Private
-router.delete('/students/:id', verifyJwt, verifyRoles(ROLES_LIST.Admin), deleteStudent);
+router.delete('/students/:id', verifyJwt, verifyRoles(ROLES_LIST.Editor, ROLES_LIST.Admin), deleteStudent);
 
 // @route    /students
 // @desc     get student by ID
@@ -29,7 +29,7 @@ router.get('/student/:id', verifyJwt, verifyRoles(ROLES_LIST.User), getStudent);
 // @route    /students
 // @desc     get student by ID
 // @access   Private
-router.patch('/student/:id', verifyJwt, verifyRoles(ROLES_LIST.User), updateStudent);
+router.patch('/student/:id', verifyJwt, verifyRoles(ROLES_LIST.Editor, ROLES_LIST.Admin), updateStudent);
 
 
 export default router;
