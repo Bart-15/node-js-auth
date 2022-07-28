@@ -19,13 +19,10 @@ This is my simple implementation of JWT auth with refresh token using the MERN s
 	$ git https://github.com/Bart-15/node-js-auth.git
 	$ cd node-js-auth
 	$ npm install
-	$ npm start
-    ```
-
-    <h4>User Seeder</h4>
-    ```
 	$ cd seeder
 	$ node userSeeder.js
+	$ cd ..
+	$ npm start
     ```
 
 
@@ -38,4 +35,5 @@ This is my simple implementation of JWT auth with refresh token using the MERN s
   <li>CRUD (Student route)</li>
   <li>Password Reset</li>
   <li>Custom Seeder</li>
+  <li>Nodemailer</li>
 </ul>
