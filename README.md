@@ -12,11 +12,13 @@ This is my simple implementation of JWT auth with refresh token using the MERN s
 
 >Front end application Click [here](https://serene-cucurucho-dfeca4.netlify.app)
 
+>Frontend source code Click [here](https://github.com/Bart-15/react-auth)
+
 
 ## Installation
 
     ```
-	$ git https://github.com/Bart-15/node-js-auth.git
+	$ git clone https://github.com/Bart-15/node-js-auth.git
 	$ cd node-js-auth
 	$ npm install
 	$ cd seeder
